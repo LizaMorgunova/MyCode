@@ -1,0 +1,61 @@
+import java.util.Scanner;
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int val) {
+        this.val = val;
+    }
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
+}
+public class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode list = head;
+        while (list != null && list.next != null) {
+            if (list.val == list.next.val) {
+                list.next = list.next.next;
+            } else {
+                list = list.next;
+            }
+        }
+        return head;
+    }
+    public static ListNode createList(int[] arr) {
+        if (arr.length == 0) return null;
+        ListNode head = new ListNode(arr[0]);
+        ListNode current = head;
+        for (int i = 1; i < arr.length; i++) {
+            current.next = new ListNode(arr[i]);
+            current = current.next;
+        }
+        return head;
+    }
+    public static void printList(ListNode head) {
+        ListNode current = head;
+        while (current != null) {
+            System.out.print(current.val + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите количество элементов списке ");
+        int num = scanner.nextInt();
+        int[] array = new int[num];
+        System.out.println("Введите элементы списка ");
+        for (int i = 0; i < num; i++) {
+            array[i] = scanner.nextInt();
+        }
+
+        ListNode list = createList(array);
+
+        Solution solution = new Solution();
+        ListNode sortedList = solution.deleteDuplicates(list);
+
+        printList(sortedList);
+        scanner.close();
+    }
+}
