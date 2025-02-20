@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class Solution {
+    public static int mySqrt(int x){
+        int left = 0;
+        int right = x;
+        int result = 0;
+        while(left <= right){
+            int mid = (left+right)/2;
+            int preResult = mid * mid;
+            if (preResult == x) {
+                return mid;
+            }
+            else if (preResult < x) {
+                result = mid;
+                left = mid + 1;
+            }
+            else {
+                right = mid - 1;
+            }
+        }
+        return result;
+    }
+    public static void main (String[] args) {
+        Scanner scanner = new Scanner (System.in);
+        System.out.println("Введите число");
+        int num = scanner.nextInt();
+        System.out.println(mySqrt(num));
+        scanner.close();
+    }
+}

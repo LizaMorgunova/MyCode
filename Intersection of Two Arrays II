@@ -1,0 +1,45 @@
+import java.util.Scanner;
+import java.util.Arrays;
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        int list1 = nums1.length;
+        int list2 = nums2.length;
+        int i = 0, j = 0, k = 0;
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        while(i < list1 && j < list2) {
+            if(nums1[i] < nums2[j]) {
+                i++;
+            }
+            else if(nums1[i] > nums2[j]) {
+                j++;
+            }
+            else {
+                nums1[k++] = nums1[i++];
+                j++;
+            }
+        }
+        return Arrays.copyOfRange(nums1,0,k);
+    }
+    public static void main (String[] args) {
+        Scanner in = new Scanner (System.in);
+        System.out.println("Введите число элементов в 1 массиве");
+        int n1 = in.nextInt();
+        int[] nums1 = new int[n1];
+        System.out.println("Введите 1 массив");
+        for (int i = 0; i < n1; i++) {
+            nums1[i] = in.nextInt();
+        }
+        System.out.println("Введите число элементов во 2 массиве");
+        int n2 = in.nextInt();
+        int[] nums2 = new int[n2];
+        System.out.println("Введите 2 массив");
+        for (int i = 0; i < n2; i++) {
+            nums2[i] = in.nextInt();
+        }
+        Solution solution = new Solution();
+        int[] result = solution.intersect(nums1, nums2);
+        System.out.println(Arrays.toString(result));
+        in.close();
+    }
+}
