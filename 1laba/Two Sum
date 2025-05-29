@@ -1,0 +1,32 @@
+import java.util.Scanner;
+import java.util.Arrays;
+class Solution {
+    public static void main (String[] args) {
+        Scanner in = new Scanner (System.in);
+        System.out.println("Введите число target");
+        int target = in.nextInt();
+        System.out.println("Введите сколько элементов в массиве");
+        int num = in.nextInt();
+        int[] nums = new int[num];
+        System.out.println("Введите массив nums");
+        for (int i = 0; i < num; i++) {
+            nums[i] = in.nextInt();
+        }
+        Solution solution = new Solution();
+        int[] result = solution.twoSum(nums, target);
+        if (!(result.length == 0)) {
+            System.out.println(Arrays.toString(result));
+        }
+        in.close();
+    }
+    public int[] twoSum(int[] nums, int target) {
+        for(int i = 0; i < nums.length; i++){
+            for(int j = i + 1; j < nums.length; j++){
+                if(nums[i] + nums[j] == target) {
+                    return new int[]{i,j};
+                }
+            }
+        }
+        return new int[]{};
+    }
+}
